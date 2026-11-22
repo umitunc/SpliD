@@ -2,14 +2,7 @@ import { useEffect, useState } from 'react';
 import { Copy, Eye, EyeOff, Minus, Moon, RotateCcw, Square, Sun, X } from 'lucide-react';
 import splidLogo from '../assets/splid-logo.png';
 import { estimateFilamentGrams } from '../core/filamentEstimator';
-import { useAppStore, type UxiGLSeed } from '../store/useAppStore';
-
-const SEEDS: { id: UxiGLSeed; label: string; color: string }[] = [
-  { id: 'cupertino', label: 'Cupertino Blue', color: '#0A84FF' },
-  { id: 'iris', label: 'Material Iris', color: '#6366F1' },
-  { id: 'emerald', label: 'Emerald Mint', color: '#10B981' },
-  { id: 'coral', label: 'Solar Coral', color: '#F97316' }
-];
+import { useAppStore } from '../store/useAppStore';
 
 export function TopBar() {
   const {
@@ -19,10 +12,8 @@ export function TopBar() {
     filamentMaterial,
     infillPercent,
     showBuildPlate,
-    themeSeed,
     themeMode,
     setShowBuildPlate,
-    setThemeSeed,
     toggleThemeMode,
     clearModel,
     getActivePrinter
@@ -88,27 +79,6 @@ export function TopBar() {
             ({printer.buildVolume.x}×{printer.buildVolume.y}×{printer.buildVolume.z} mm)
           </span>
         )}
-
-        {/* uxiGL Seed Palette Switcher */}
-        <div
-          className="uxigl-sunken flex items-center gap-1.5 rounded-full px-2.5 py-1"
-          title="uxiGL Tema Rengi"
-        >
-          {SEEDS.map((s) => (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => setThemeSeed(s.id)}
-              title={s.label}
-              className={`h-3.5 w-3.5 rounded-full transition-transform ${
-                themeSeed === s.id
-                  ? 'scale-110 ring-2 ring-[var(--uxigl-text-primary)] ring-offset-1 ring-offset-transparent'
-                  : 'opacity-55 hover:opacity-100'
-              }`}
-              style={{ backgroundColor: s.color }}
-            />
-          ))}
-        </div>
 
         <button
           type="button"

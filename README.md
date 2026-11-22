@@ -1,10 +1,14 @@
-# SpliD — Automatic Cross-Platform 3D Model Splitter
-
 <p align="center">
-  <img src="docs/logo/splid-logo.png" width="140" alt="SpliD Logo" />
+  <img src="docs/logo/splid-logo.png" width="180" alt="SpliD Logo" />
 </p>
 
-**SpliD**, karmaşık manuel kesim araçları yerine **4 adımlı, sıfır sürtünmeli (zero-friction)** bir masaüstü iş akışı sunan cross-platform (Windows, macOS, Linux) Electron 3D model bölme uygulamasıdır.
+<h1 align="center">SpliD — Automatic Cross-Platform 3D Model Splitter</h1>
+
+<p align="center">
+  Karmaşık manuel kesim araçları yerine <strong>4 adımlı, sıfır sürtünmeli (zero-friction)</strong> bir masaüstü iş akışı sunan cross-platform (Windows, macOS, Linux) Electron 3D model bölme uygulaması.
+</p>
+
+---
 
 ## Özellikler
 
@@ -34,3 +38,15 @@ npx vitest run
 # Production derlemesi
 npm run build
 ```
+
+---
+
+## Künye
+
+| | |
+| :--- | :--- |
+| **Geliştirici** | Ümit Tunç |
+| **Kuruluş** | Trunçgil Teknoloji |
+| **Web** | [truncgil.com](https://truncgil.com) |
+| **Lisans** | MIT |
+

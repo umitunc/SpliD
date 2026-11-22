@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Copy, Eye, EyeOff, Minus, Moon, RotateCcw, Square, Sun, X } from 'lucide-react';
 import splidLogo from '../assets/splid-logo.png';
-import { estimateFilamentGrams } from '../core/filamentEstimator';
 import { useAppStore } from '../store/useAppStore';
 
 export function TopBar() {
   const {
     rawMesh,
-    targetSize,
-    modelVolumeCM3,
-    filamentMaterial,
-    infillPercent,
     showBuildPlate,
     themeMode,
     setShowBuildPlate,
     toggleThemeMode,
-    clearModel,
-    getActivePrinter
+    clearModel
   } = useAppStore();
 
-  const printer = getActivePrinter();
-  const estimatedGrams = estimateFilamentGrams(modelVolumeCM3, filamentMaterial, infillPercent);
   const [isMaximized, setIsMaximized] = useState(false);
 
   useEffect(() => {
@@ -54,32 +46,6 @@ export function TopBar() {
       </div>
 
       <div className="uxigl-no-drag flex items-center gap-2 text-xs">
-        {rawMesh ? (
-          <div className="uxigl-sunken hidden items-center gap-3 rounded-full px-3.5 py-1 md:flex">
-            <span className="uxigl-text-primary max-w-[160px] truncate font-medium">
-              {rawMesh.fileName}
-            </span>
-            <span className="uxigl-text-muted">•</span>
-            <span className="uxigl-accent-text font-mono font-semibold">
-              {targetSize.x.toFixed(1)} × {targetSize.y.toFixed(1)} × {targetSize.z.toFixed(1)} mm
-            </span>
-            <span className="uxigl-text-muted">•</span>
-            <span className="uxigl-text-secondary font-mono">{modelVolumeCM3.toFixed(1)} cm³</span>
-            <span className="uxigl-text-muted">•</span>
-            <span className="font-mono font-semibold text-emerald-500">
-              ~{estimatedGrams.toFixed(0)} gr {filamentMaterial}
-            </span>
-          </div>
-        ) : (
-          <span className="uxigl-text-muted hidden md:inline">
-            Tabla:{' '}
-            <strong className="uxigl-text-primary">
-              {printer.brand} {printer.model}
-            </strong>{' '}
-            ({printer.buildVolume.x}×{printer.buildVolume.y}×{printer.buildVolume.z} mm)
-          </span>
-        )}
-
         <button
           type="button"
           onClick={toggleThemeMode}

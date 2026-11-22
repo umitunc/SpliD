@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber';
-import { GizmoHelper, GizmoViewport, Grid, OrbitControls } from '@react-three/drei';
+import { GizmoHelper, GizmoViewport, Grid, Html, OrbitControls } from '@react-three/drei';
 import { Box, Layers } from 'lucide-react';
 import { Slider } from '@/components/primitives';
+import { estimateFilamentGrams } from '../core/filamentEstimator';
 import { useAppStore } from '../store/useAppStore';
 
 function buildThreeGeometry(positions: Float32Array, indices: Uint32Array): THREE.BufferGeometry {
@@ -101,9 +102,10 @@ function SplitPartsGroup() {
 }
 
 function BuildVolumeBox() {
-  const { showBuildPlate, getActivePrinter } = useAppStore();
+  const { showBuildPlate, themeMode, getActivePrinter } = useAppStore();
   const printer = getActivePrinter();
   const { x, y, z } = printer.buildVolume;
+  const isDark = themeMode === 'dark';
 
   const edgesGeo = useMemo(() => {
     const box = new THREE.BoxGeometry(x, y, z);
@@ -120,6 +122,12 @@ function BuildVolumeBox() {
 
   if (!showBuildPlate) return null;
 
+  const badgeClass = `pointer-events-none select-none whitespace-nowrap rounded-md border px-1.5 py-0.5 font-mono text-[10px] font-semibold backdrop-blur-sm ${
+    isDark
+      ? 'border-sky-400/35 bg-slate-950/75 text-sky-300'
+      : 'border-sky-600/30 bg-white/80 text-sky-700'
+  }`;
+
   return (
     <group position={[0, 0, z * 0.5]}>
       <lineSegments geometry={edgesGeo}>
@@ -129,13 +137,41 @@ function BuildVolumeBox() {
         <planeGeometry args={[x, y]} />
         <meshBasicMaterial color="#0EA5E9" transparent opacity={0.06} side={THREE.DoubleSide} />
       </mesh>
+
+      {/* En (X) - front edge of build plate */}
+      <Html position={[0, -y * 0.5 - 12, -z * 0.5 + 1]} center>
+        <div className={badgeClass}>En (X): {x} mm</div>
+      </Html>
+
+      {/* Boy (Y) - right edge of build plate */}
+      <Html position={[x * 0.5 + 14, 0, -z * 0.5 + 1]} center>
+        <div className={badgeClass}>Boy (Y): {y} mm</div>
+      </Html>
+
+      {/* Yükseklik (Z) - front-right vertical edge */}
+      <Html position={[x * 0.5 + 14, -y * 0.5, 0]} center>
+        <div className={badgeClass}>Yükseklik (Z): {z} mm</div>
+      </Html>
     </group>
   );
 }
 
 export function Viewport3D() {
-  const { rawMesh, splitResult, explodeFactor, themeMode, setExplodeFactor } = useAppStore();
+  const {
+    rawMesh,
+    targetSize,
+    modelVolumeCM3,
+    filamentMaterial,
+    infillPercent,
+    splitResult,
+    explodeFactor,
+    themeMode,
+    setExplodeFactor,
+    getActivePrinter
+  } = useAppStore();
   const isDark = themeMode === 'dark';
+  const printer = getActivePrinter();
+  const estimatedGrams = estimateFilamentGrams(modelVolumeCM3, filamentMaterial, infillPercent);
 
   return (
     <div className="relative flex-1">
@@ -208,6 +244,37 @@ export function Viewport3D() {
           </span>
         </div>
       )}
+
+      {/* Bottom-right status pill (printer or active model info) */}
+      <div className="pointer-events-none absolute bottom-4 right-4 text-xs">
+        {rawMesh ? (
+          <div className="uxigl-glass-clear flex items-center gap-2.5 rounded-full px-3.5 py-1.5">
+            <span className="uxigl-text-primary max-w-[160px] truncate font-medium">
+              {rawMesh.fileName}
+            </span>
+            <span className="uxigl-text-muted">•</span>
+            <span className="uxigl-accent-text font-mono font-semibold">
+              {targetSize.x.toFixed(1)} × {targetSize.y.toFixed(1)} × {targetSize.z.toFixed(1)} mm
+            </span>
+            <span className="uxigl-text-muted">•</span>
+            <span className="uxigl-text-secondary font-mono">{modelVolumeCM3.toFixed(1)} cm³</span>
+            <span className="uxigl-text-muted">•</span>
+            <span className="font-mono font-semibold text-emerald-500">
+              ~{estimatedGrams.toFixed(0)} gr {filamentMaterial}
+            </span>
+          </div>
+        ) : (
+          <div className="uxigl-glass-clear rounded-full px-3.5 py-1.5">
+            <span className="uxigl-text-muted">
+              Tabla:{' '}
+              <strong className="uxigl-text-primary">
+                {printer.brand} {printer.model}
+              </strong>{' '}
+              ({printer.buildVolume.x}×{printer.buildVolume.y}×{printer.buildVolume.z} mm)
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

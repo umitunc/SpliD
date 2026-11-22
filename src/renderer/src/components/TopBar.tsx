@@ -55,9 +55,6 @@ export function TopBar() {
             <span className="uxigl-text-primary text-lg font-bold leading-none tracking-tight">
               SpliD
             </span>
-            <span className="uxigl-accent-badge rounded-full px-2 py-0.5 text-[10px] font-semibold">
-              uxiGL Wizard
-            </span>
           </div>
           <span className="uxigl-text-muted text-[11px] leading-none">
             Automatic 3D Model Splitter

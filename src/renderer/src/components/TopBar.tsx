@@ -50,7 +50,7 @@ export function TopBar() {
           type="button"
           onClick={toggleThemeMode}
           className="uxigl-btn-outlined flex items-center justify-center rounded-full p-1.5"
-          title={themeMode === 'dark' ? 'Açık Tema (Light Mode)' : 'Koyu Tema (Dark Mode)'}
+          title={themeMode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         >
           {themeMode === 'dark' ? (
             <Sun className="h-3.5 w-3.5 text-amber-400" />
@@ -63,14 +63,14 @@ export function TopBar() {
           type="button"
           onClick={() => setShowBuildPlate(!showBuildPlate)}
           className="uxigl-btn-outlined flex items-center gap-1.5 rounded-full px-3 py-1.5"
-          title="Tabla sınırlarını göster/gizle"
+          title="Toggle build plate visibility"
         >
           {showBuildPlate ? (
             <Eye className="uxigl-accent-text h-3.5 w-3.5" />
           ) : (
             <EyeOff className="uxigl-text-muted h-3.5 w-3.5" />
           )}
-          <span>Tabla</span>
+          <span>Build Plate</span>
         </button>
 
         {rawMesh && (
@@ -80,7 +80,7 @@ export function TopBar() {
             className="uxigl-btn-outlined flex items-center gap-1.5 rounded-full px-3 py-1.5 hover:border-rose-500/40 hover:text-rose-500"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            <span>Sıfırla</span>
+            <span>Reset</span>
           </button>
         )}
 
@@ -90,8 +90,8 @@ export function TopBar() {
               type="button"
               onClick={() => void window.splidAPI?.windowMinimize()}
               className="uxigl-btn-outlined flex h-7 w-7 items-center justify-center rounded-lg"
-              title="Küçült"
-              aria-label="Pencereyi küçült"
+              title="Minimize"
+              aria-label="Minimize window"
             >
               <Minus className="h-3.5 w-3.5" />
             </button>
@@ -99,8 +99,8 @@ export function TopBar() {
               type="button"
               onClick={() => void window.splidAPI?.windowToggleMaximize().then(setIsMaximized)}
               className="uxigl-btn-outlined flex h-7 w-7 items-center justify-center rounded-lg"
-              title={isMaximized ? 'Önceki Boyut' : 'Ekranı Kapla'}
-              aria-label={isMaximized ? 'Pencereyi önceki boyutuna getir' : 'Pencereyi büyüt'}
+              title={isMaximized ? 'Restore Down' : 'Maximize'}
+              aria-label={isMaximized ? 'Restore window size' : 'Maximize window'}
             >
               {isMaximized ? (
                 <Copy className="h-3 w-3" />
@@ -112,8 +112,8 @@ export function TopBar() {
               type="button"
               onClick={() => void window.splidAPI?.windowClose()}
               className="uxigl-btn-outlined flex h-7 w-7 items-center justify-center rounded-lg hover:border-rose-500/50 hover:bg-rose-500 hover:text-white"
-              title="Kapat"
-              aria-label="Uygulamayı kapat"
+              title="Close"
+              aria-label="Close application"
             >
               <X className="h-3.5 w-3.5" />
             </button>

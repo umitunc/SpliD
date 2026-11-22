@@ -47,13 +47,13 @@ export function Step3Printer() {
     <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="uxigl-text-primary text-base font-semibold">3. Yazıcı Tablası Seç</h2>
+          <h2 className="uxigl-text-primary text-base font-semibold">3. Select Printer Build Plate</h2>
           <p className="uxigl-text-muted mt-0.5 text-xs">
-            Modelin sığdırılacağı 3D yazıcının baskı hacmini seç.
+            Choose the target 3D printer build volume for splitting.
           </p>
         </div>
         <span className="uxigl-sunken uxigl-text-secondary rounded-full px-2.5 py-0.5 font-mono text-[10px]">
-          {PRINTER_LIST.length} Profil
+          {PRINTER_LIST.length} Profiles
         </span>
       </div>
 
@@ -63,7 +63,7 @@ export function Step3Printer() {
             <Search className="uxigl-text-muted pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5" />
             <input
               type="text"
-              placeholder="Yazıcı ara (Bambu, Ender, Prusa...)"
+              placeholder="Search printer (Bambu, Ender, Prusa...)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="uxigl-input w-full py-2 pl-8 pr-2.5 text-xs"
@@ -76,7 +76,7 @@ export function Step3Printer() {
           >
             {brands.map((b) => (
               <option key={b} value={b}>
-                {b === 'ALL' ? 'Tüm Markalar' : b}
+                {b === 'ALL' ? 'All Brands' : b}
               </option>
             ))}
           </select>
@@ -87,7 +87,7 @@ export function Step3Printer() {
           onChange={(e) => setSelectedPrinterId(e.target.value)}
           className="uxigl-input w-full px-3 py-2.5 text-xs font-semibold"
         >
-          <option value={CUSTOM_PRINTER_ID}>★ Özel Tabla Boyutu (Custom mm)</option>
+          <option value={CUSTOM_PRINTER_ID}>★ Custom Build Volume (mm)</option>
           {filteredPrinters.map((p) => (
             <option key={p.id} value={p.id}>
               {p.brand} — {p.model} ({p.buildVolume.x}×{p.buildVolume.y}×{p.buildVolume.z} mm) [{p.technology}]
@@ -100,7 +100,7 @@ export function Step3Printer() {
             {(['x', 'y', 'z'] as const).map((axis) => (
               <label key={axis} className="block">
                 <span className="uxigl-text-muted mb-1 block text-[10px] uppercase">
-                  Tabla {axis} (mm)
+                  Bed {axis} (mm)
                 </span>
                 <input
                   type="number"
@@ -135,7 +135,7 @@ export function Step3Printer() {
         </div>
 
         <label className="uxigl-input flex items-center gap-1.5 px-2.5 py-1.5 text-[11px]">
-          <span className="uxigl-text-muted">Güvenlik Payı:</span>
+          <span className="uxigl-text-muted">Safety Margin:</span>
           <input
             type="number"
             min={0}
@@ -164,18 +164,18 @@ export function Step3Printer() {
             {estimate.parts <= 1 ? (
               <>
                 <CheckCircle2 className="h-4 w-4" />
-                <span>Tek Parça Sığıyor (Bölme Gerekmiyor)</span>
+                <span>Fits in 1 Piece (No Split Needed)</span>
               </>
             ) : (
               <>
                 <Scissors className="h-4 w-4" />
-                <span>Otomatik Bölme Tahmini: ~{estimate.parts} parça</span>
+                <span>Estimated Auto-Split: ~{estimate.parts} parts</span>
               </>
             )}
           </div>
           {estimate.rotated90Z && (
             <span className="uxigl-accent-badge rounded-full px-2 py-0.5 text-[10px] font-semibold">
-              90° Z Oto-Dönüş
+              90° Z Auto-Rotate
             </span>
           )}
         </div>

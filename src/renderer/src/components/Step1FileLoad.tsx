@@ -14,7 +14,7 @@ export function Step1FileLoad() {
       const parsed = parseModelBuffer(fileName, buffer);
       setRawMesh(parsed);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Model yüklenirken hata oluştu.');
+      setError(err instanceof Error ? err.message : 'Failed to load 3D model.');
     }
   };
 
@@ -55,9 +55,9 @@ export function Step1FileLoad() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="uxigl-text-primary text-base font-semibold">1. 3D Modelini Yükle</h2>
+        <h2 className="uxigl-text-primary text-base font-semibold">1. Load 3D Model</h2>
         <p className="uxigl-text-muted mt-0.5 text-xs">
-          STL, OBJ veya 3MF dosyanı seç; mevcut boyutları anında ölçülsün.
+          Select an STL, OBJ, or 3MF file to automatically measure its dimensions.
         </p>
       </div>
 
@@ -77,10 +77,10 @@ export function Step1FileLoad() {
           <UploadCloud className="h-6 w-6" />
         </div>
         <p className="uxigl-text-primary text-sm font-semibold">
-          {rawMesh ? 'Farklı Bir Model Seç' : 'Modeli Sürükle veya Gözat (Browse)'}
+          {rawMesh ? 'Choose Another Model' : 'Drag & Drop Model or Browse'}
         </p>
         <p className="uxigl-text-muted mt-1 text-xs">
-          Desteklenen formatlar:{' '}
+          Supported formats:{' '}
           <span className="uxigl-text-secondary font-medium">.STL · .OBJ · .3MF</span>
         </p>
       </div>
@@ -106,19 +106,19 @@ export function Step1FileLoad() {
 
           <div className="mt-3 grid grid-cols-3 gap-2 text-center">
             <div className="uxigl-sunken px-2 py-2">
-              <div className="uxigl-text-muted text-[10px]">Mevcut X</div>
+              <div className="uxigl-text-muted text-[10px]">Current X</div>
               <div className="uxigl-accent-text font-mono text-sm font-bold">
                 {rawMesh.originalSize.x.toFixed(1)} mm
               </div>
             </div>
             <div className="uxigl-sunken px-2 py-2">
-              <div className="uxigl-text-muted text-[10px]">Mevcut Y</div>
+              <div className="uxigl-text-muted text-[10px]">Current Y</div>
               <div className="uxigl-accent-text font-mono text-sm font-bold">
                 {rawMesh.originalSize.y.toFixed(1)} mm
               </div>
             </div>
             <div className="uxigl-sunken px-2 py-2">
-              <div className="uxigl-text-muted text-[10px]">Mevcut Z</div>
+              <div className="uxigl-text-muted text-[10px]">Current Z</div>
               <div className="uxigl-accent-text font-mono text-sm font-bold">
                 {rawMesh.originalSize.z.toFixed(1)} mm
               </div>
@@ -126,7 +126,7 @@ export function Step1FileLoad() {
           </div>
 
           <div className="uxigl-sunken uxigl-text-secondary mt-2.5 flex items-center justify-between px-3 py-1.5 text-xs">
-            <span>Hesaplanan Hacim</span>
+            <span>Calculated Volume</span>
             <span className="uxigl-text-primary font-mono font-semibold">
               {modelVolumeCM3.toFixed(1)} cm³
             </span>

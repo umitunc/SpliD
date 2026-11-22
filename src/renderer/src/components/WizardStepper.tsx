@@ -2,10 +2,10 @@ import { Check } from 'lucide-react';
 import { useAppStore, type WizardStep } from '../store/useAppStore';
 
 const STEPS: { step: WizardStep; title: string; subtitle: string }[] = [
-  { step: 1, title: 'Model', subtitle: 'Yükle & Ölç' },
-  { step: 2, title: 'Boyut', subtitle: 'Ölçekle' },
-  { step: 3, title: 'Tabla', subtitle: 'Yazıcı Seç' },
-  { step: 4, title: 'Böl', subtitle: 'Dışa Aktar' }
+  { step: 1, title: 'Model', subtitle: 'Load & Measure' },
+  { step: 2, title: 'Scale', subtitle: 'Dimensions' },
+  { step: 3, title: 'Printer', subtitle: 'Build Plate' },
+  { step: 4, title: 'Split', subtitle: 'Export' }
 ];
 
 export function WizardStepper() {

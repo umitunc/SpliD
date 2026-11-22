@@ -32,12 +32,12 @@ function extractMergedGeometryFromObject(root: THREE.Object3D): THREE.BufferGeom
   });
 
   if (geometries.length === 0) {
-    throw new Error('Model dosyasında geçerli bir 3D mesh geometrisi bulunamadı.');
+    throw new Error('No valid 3D mesh geometry found in model file.');
   }
 
   const merged = geometries.length === 1 ? geometries[0] : mergeGeometries(geometries, false);
   if (!merged) {
-    throw new Error('Mesh geometrileri birleştirilemedi.');
+    throw new Error('Failed to merge mesh geometries.');
   }
   return merged;
 }
@@ -62,14 +62,14 @@ export function parseModelBuffer(fileName: string, buffer: ArrayBuffer): RawMesh
     const group = loader.parse(buffer);
     geometry = extractMergedGeometryFromObject(group);
   } else {
-    throw new Error(`Desteklenmeyen dosya formatı: .${ext} (STL, OBJ veya 3MF kullanın)`);
+    throw new Error(`Unsupported file format: .${ext} (use STL, OBJ, or 3MF)`);
   }
 
   // Strip non-position attributes and weld duplicate vertices for watertight Manifold conversion
   const cleanGeo = new THREE.BufferGeometry();
   const posAttr = geometry.getAttribute('position');
   if (!posAttr || posAttr.count < 3) {
-    throw new Error('Geçersiz veya boş 3D geometri.');
+    throw new Error('Invalid or empty 3D geometry.');
   }
   cleanGeo.setAttribute('position', posAttr);
   if (geometry.index) {
@@ -81,7 +81,7 @@ export function parseModelBuffer(fileName: string, buffer: ArrayBuffer): RawMesh
   const finalIndex = indexedGeo.getIndex();
 
   if (!finalIndex || finalIndex.count < 3) {
-    throw new Error('İndeksli üçgen yapısı oluşturulamadı.');
+    throw new Error('Failed to build indexed triangle structure.');
   }
 
   const rawPositions = new Float32Array(finalPosAttr.array.length);

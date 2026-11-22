@@ -17,7 +17,7 @@ export function registerIpcHandlers(): void {
   ipcMain.handle('splid:openFileDialog', async (): Promise<OpenedModelFile | null> => {
     const win = BrowserWindow.getFocusedWindow();
     const openOptions: Electron.OpenDialogOptions = {
-      title: '3D Model Seç (STL / OBJ / 3MF)',
+      title: 'Select 3D Model (STL / OBJ / 3MF)',
       properties: ['openFile'],
       filters: [
         { name: '3D Models', extensions: ['stl', 'obj', '3mf'] },
@@ -46,7 +46,7 @@ export function registerIpcHandlers(): void {
     async (_event, defaultName: string, zipBytes: Uint8Array): Promise<string | null> => {
       const win = BrowserWindow.getFocusedWindow();
       const saveOptions: Electron.SaveDialogOptions = {
-        title: 'Bölünmüş Parçaları ZIP Olarak Kaydet',
+        title: 'Save Split Parts as ZIP',
         defaultPath: defaultName,
         filters: [{ name: 'ZIP Archive', extensions: ['zip'] }]
       };
@@ -72,7 +72,7 @@ export function registerIpcHandlers(): void {
     ): Promise<string | null> => {
       const win = BrowserWindow.getFocusedWindow();
       const folderOptions: Electron.OpenDialogOptions = {
-        title: 'STL Parçalarının Çıkarılacağı Klasörü Seç',
+        title: 'Select Output Folder for Split STL Parts',
         properties: ['openDirectory', 'createDirectory']
       };
       const result = win

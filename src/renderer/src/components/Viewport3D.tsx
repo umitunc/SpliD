@@ -138,19 +138,19 @@ function BuildVolumeBox() {
         <meshBasicMaterial color="#0EA5E9" transparent opacity={0.06} side={THREE.DoubleSide} />
       </mesh>
 
-      {/* En (X) - front edge of build plate */}
+      {/* Width (X) - front edge of build plate */}
       <Html position={[0, -y * 0.5 - 12, -z * 0.5 + 1]} center>
-        <div className={badgeClass}>En (X): {x} mm</div>
+        <div className={badgeClass}>W (X): {x} mm</div>
       </Html>
 
-      {/* Boy (Y) - right edge of build plate */}
+      {/* Depth (Y) - right edge of build plate */}
       <Html position={[x * 0.5 + 14, 0, -z * 0.5 + 1]} center>
-        <div className={badgeClass}>Boy (Y): {y} mm</div>
+        <div className={badgeClass}>D (Y): {y} mm</div>
       </Html>
 
-      {/* Yükseklik (Z) - front-right vertical edge */}
+      {/* Height (Z) - front-right vertical edge */}
       <Html position={[x * 0.5 + 14, -y * 0.5, 0]} center>
-        <div className={badgeClass}>Yükseklik (Z): {z} mm</div>
+        <div className={badgeClass}>H (Z): {z} mm</div>
       </Html>
     </group>
   );
@@ -215,10 +215,10 @@ export function Viewport3D() {
           <div className="uxigl-glass-clear rounded-2xl px-6 py-5 text-center">
             <Box className="uxigl-accent-text mx-auto mb-2 h-8 w-8" />
             <p className="uxigl-text-primary text-sm font-semibold">
-              Adım 1'den bir 3D model yükleyin
+              Load a 3D model from Step 1
             </p>
             <p className="uxigl-text-muted mt-1 text-xs">
-              STL, OBJ veya 3MF dosyaları otomatik ölçülür ve sihirbaz adımlarıyla en az parçaya bölünür.
+              STL, OBJ, or 3MF files are automatically measured and split into the fewest possible parts.
             </p>
           </div>
         </div>
@@ -229,7 +229,7 @@ export function Viewport3D() {
         <div className="uxigl-glass-clear absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full px-5 py-2.5">
           <Layers className="uxigl-accent-text h-4 w-4 shrink-0" />
           <span className="uxigl-text-primary shrink-0 text-xs font-semibold">
-            Patlatılmış Görünüm
+            Exploded View
           </span>
           <Slider
             min={0}
@@ -260,13 +260,13 @@ export function Viewport3D() {
             <span className="uxigl-text-secondary font-mono">{modelVolumeCM3.toFixed(1)} cm³</span>
             <span className="uxigl-text-muted">•</span>
             <span className="font-mono font-semibold text-emerald-500">
-              ~{estimatedGrams.toFixed(0)} gr {filamentMaterial}
+              ~{estimatedGrams.toFixed(0)} g {filamentMaterial}
             </span>
           </div>
         ) : (
           <div className="uxigl-glass-clear rounded-full px-3.5 py-1.5">
             <span className="uxigl-text-muted">
-              Tabla:{' '}
+              Build Plate:{' '}
               <strong className="uxigl-text-primary">
                 {printer.brand} {printer.model}
               </strong>{' '}

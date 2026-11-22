@@ -39,11 +39,11 @@ export default function App() {
               className="uxigl-btn-outlined flex items-center gap-1 rounded-xl px-3.5 py-2 text-xs font-semibold disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ChevronLeft className="h-4 w-4" />
-              <span>Geri</span>
+              <span>Back</span>
             </button>
 
             <span className="uxigl-text-muted font-mono text-[11px]">
-              Adım {currentStep} / 4
+              Step {currentStep} / 4
             </span>
 
             {currentStep < 4 ? (
@@ -53,7 +53,7 @@ export default function App() {
                 onClick={nextStep}
                 className="uxigl-btn-filled flex items-center gap-1 rounded-xl px-4 py-2 text-xs font-semibold disabled:cursor-not-allowed disabled:opacity-35"
               >
-                <span>İleri</span>
+                <span>Next</span>
                 <ChevronRight className="h-4 w-4" />
               </button>
             ) : (

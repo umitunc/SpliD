@@ -46,7 +46,7 @@ export function Step4Split() {
     if (window.splidAPI) {
       const savedPath = await window.splidAPI.saveZipDialog(zipName, zipBytes);
       if (savedPath) {
-        setExportMessage(`ZIP kaydedildi: ${savedPath}`);
+        setExportMessage(`ZIP saved: ${savedPath}`);
       }
       return;
     }
@@ -69,7 +69,7 @@ export function Step4Split() {
     if (window.splidAPI) {
       const folderPath = await window.splidAPI.saveFolderDialog(`${baseName}_SpliD`, files);
       if (folderPath) {
-        setExportMessage(`Klasöre çıkarıldı: ${folderPath}`);
+        setExportMessage(`Exported to folder: ${folderPath}`);
       }
     } else {
       await handleDownloadZip();
@@ -79,9 +79,9 @@ export function Step4Split() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="uxigl-text-primary text-base font-semibold">4. Best-Practice Böl & İndir</h2>
+        <h2 className="uxigl-text-primary text-base font-semibold">4. Best-Practice Split &amp; Export</h2>
         <p className="uxigl-text-muted mt-0.5 text-xs">
-          Minimum parça sayısı, adaptif pimler ve su geçirmez STL çıktısı.
+          Minimum part count, adaptive alignment pins, and watertight STL export.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ export function Step4Split() {
         <div className="flex items-center justify-between">
           <div className="uxigl-text-primary flex items-center gap-2 text-xs font-semibold">
             <Pin className="h-4 w-4 text-amber-500" />
-            <span>Hizalama Pimleri (Dowel Pins)</span>
+            <span>Alignment Pins (Dowels)</span>
           </div>
           <input
             type="checkbox"
@@ -109,14 +109,14 @@ export function Step4Split() {
               }
               className="uxigl-input w-full px-2.5 py-2 text-[11px]"
             >
-              <option value="adaptive">Adaptif (Önerilen: 4mm / 1.75mm Filament / İnce Atlama)</option>
-              <option value="standard-pin">Standart Pim (4 mm)</option>
-              <option value="filament-pin">1.75 mm Filament Pimi (1.95 mm yuva)</option>
+              <option value="adaptive">Adaptive (Recommended: 4mm / 1.75mm Filament / Thin-Wall Skip)</option>
+              <option value="standard-pin">Standard Dowel Pin (4 mm)</option>
+              <option value="filament-pin">1.75 mm Filament Pin (1.95 mm socket)</option>
             </select>
 
             <div className="grid grid-cols-2 gap-2 text-[11px]">
               <label className="uxigl-input flex items-center justify-between px-2.5 py-1.5">
-                <span className="uxigl-text-muted">Çap (mm)</span>
+                <span className="uxigl-text-muted">Diameter (mm)</span>
                 <input
                   type="number"
                   min={2}
@@ -132,7 +132,7 @@ export function Step4Split() {
               </label>
 
               <label className="uxigl-input flex items-center justify-between px-2.5 py-1.5">
-                <span className="uxigl-text-muted">Tolerans</span>
+                <span className="uxigl-text-muted">Clearance</span>
                 <input
                   type="number"
                   min={0.05}
@@ -161,12 +161,12 @@ export function Step4Split() {
         {isSplitting ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Bölünüyor ({splitProgress.percent}%)...</span>
+            <span>Splitting ({splitProgress.percent}%)...</span>
           </>
         ) : (
           <>
             <Sparkles className="h-4 w-4" />
-            <span>Otomatik En İyi Şekilde Böl</span>
+            <span>Auto-Split Optimally</span>
           </>
         )}
       </button>
@@ -195,7 +195,7 @@ export function Step4Split() {
         <div className="uxigl-card space-y-3 p-3.5">
           <div className="grid grid-cols-4 gap-1.5 text-center text-xs">
             <div className="uxigl-sunken p-2">
-              <div className="uxigl-text-muted text-[10px]">Parça</div>
+              <div className="uxigl-text-muted text-[10px]">Parts</div>
               <div className="uxigl-accent-text font-mono text-sm font-bold">
                 {splitResult.summary.totalParts}
               </div>
@@ -211,13 +211,13 @@ export function Step4Split() {
               </div>
             </div>
             <div className="uxigl-sunken p-2">
-              <div className="uxigl-text-muted text-[10px]">Pimler</div>
+              <div className="uxigl-text-muted text-[10px]">Pins</div>
               <div className="font-mono text-sm font-bold text-amber-500">
                 {splitResult.totalConnectorsCount + splitResult.filamentPinsCount}
               </div>
             </div>
             <div className="uxigl-sunken p-2">
-              <div className="uxigl-text-muted text-[10px]">Süre</div>
+              <div className="uxigl-text-muted text-[10px]">Time</div>
               <div className="uxigl-text-primary font-mono text-sm font-bold">
                 {(splitResult.summary.executionTimeMs / 1000).toFixed(2)}s
               </div>
@@ -229,7 +229,7 @@ export function Step4Split() {
               <div className="flex items-center gap-1.5">
                 <Pin className="h-3.5 w-3.5 text-amber-500" />
                 <span className="uxigl-text-primary font-semibold">
-                  Pim KitCard ({splitResult.totalConnectorsCount} adet)
+                  Pin KitCard ({splitResult.totalConnectorsCount} pcs)
                 </span>
               </div>
               <span className="uxigl-text-muted font-mono text-[10px]">
@@ -243,10 +243,10 @@ export function Step4Split() {
           {(splitResult.filamentPinsCount > 0 || splitResult.skippedThinFacesCount > 0) && (
             <div className="uxigl-banner-warning rounded-xl px-3 py-2 text-[11px]">
               {splitResult.filamentPinsCount > 0 && (
-                <div>• {splitResult.filamentPinsCount} orta-ince kesitte 1.75 mm filament pimi yuvası açıldı.</div>
+                <div>• Added 1.75 mm filament pin sockets on {splitResult.filamentPinsCount} medium-thin cross-sections.</div>
               )}
               {splitResult.skippedThinFacesCount > 0 && (
-                <div>• {splitResult.skippedThinFacesCount} ince kabuk (&lt;6 mm) kesitinde duvar güvenliği için pim atlandı.</div>
+                <div>• Skipped pins on {splitResult.skippedThinFacesCount} thin-wall (&lt;6 mm) cross-sections to prevent breakthrough.</div>
               )}
             </div>
           )}
@@ -286,7 +286,7 @@ export function Step4Split() {
               className="uxigl-btn-filled flex items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-semibold"
             >
               <Archive className="h-3.5 w-3.5" />
-              <span>ZIP İndir</span>
+              <span>Download ZIP</span>
             </button>
             <button
               type="button"
@@ -294,7 +294,7 @@ export function Step4Split() {
               className="uxigl-btn-tonal flex items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-semibold"
             >
               <FolderOutput className="h-3.5 w-3.5" />
-              <span>Klasöre STL</span>
+              <span>Export to Folder</span>
             </button>
           </div>
 

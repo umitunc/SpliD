@@ -36,35 +36,35 @@ export interface RawMeshData {
 export interface CutPlane {
   id: string;
   axis: 'x' | 'y' | 'z';
-  position: number;        // mm (kesim koordinatı)
+  position: number;        // mm (cut coordinate)
   normal: [number, number, number];
   crossSectionAreaMM2: number;
-  depthLevel: number;      // Hiyerarşik KD-Split derinliği (0: X, 1: Y, 2: Z)
+  depthLevel: number;      // Hierarchical KD-Split depth (0: X, 1: Y, 2: Z)
 }
 
 export type ConnectorMode = 'adaptive' | 'standard-pin' | 'filament-pin' | 'none';
 
 export interface ConnectorConfig {
   enabled: boolean;
-  mode: ConnectorMode;     // Varsayılan: 'adaptive' (kalınlığa göre 4mm / 1.75mm filament / atla)
-  diameterMM: number;      // Standart pim çapı, varsayılan: 4.0 mm
-  depthMM: number;         // Her bir parçadaki yuva derinliği, varsayılan: 6.0 mm
-  clearanceMM: number;     // Tolerans boşluğu, varsayılan: 0.2 mm
-  pinsPerFace: 1 | 2;      // Kesit alanına göre 1 veya 2 pim
+  mode: ConnectorMode;     // Default: 'adaptive' (4mm / 1.75mm filament / skip based on thickness)
+  diameterMM: number;      // Standard pin diameter, default: 4.0 mm
+  depthMM: number;         // Socket depth per part, default: 6.0 mm
+  clearanceMM: number;     // Tolerance clearance, default: 0.2 mm
+  pinsPerFace: 1 | 2;      // 1 or 2 pins depending on cross-section area
 }
 
 export interface SplitOptions {
-  safetyMarginMM: number;           // Varsayılan: 5 mm (tabla kenar boşluğu)
-  minPieceThicknessMM: number;      // Varsayılan: 20 mm (sliver önleme alt sınırı)
-  optimizeXYRotation: boolean;      // 0° vs 90° Z dönüşü ile parça sayısını azalt
-  adaptiveHierarchical: boolean;    // Her alt parçayı kendi sıkı (tight) kutusuna göre böl
-  seamOptimizationWindowMM: number; // Varsayılan: 15 mm (±15 mm içinde en dar kesiti ara)
+  safetyMarginMM: number;           // Default: 5 mm (build plate edge margin)
+  minPieceThicknessMM: number;      // Default: 20 mm (minimum anti-sliver thickness)
+  optimizeXYRotation: boolean;      // Evaluate 0° vs 90° Z rotation to reduce part count
+  adaptiveHierarchical: boolean;    // Split each sub-part against its own tight bounding box
+  seamOptimizationWindowMM: number; // Default: 15 mm (search narrowest cross-section within ±15 mm)
   connectors: ConnectorConfig;
 }
 
 export interface SplitPartResult {
   id: string;
-  label: string;                    // Örn: "Part_01_X1_Y1_Z1"
+  label: string;                    // e.g. "Part_01_X1_Y1_Z1"
   gridIndex: [number, number, number];
   positions: Float32Array;
   indices: Uint32Array;
@@ -80,8 +80,8 @@ export interface SplitExecutionResult {
   cutPlanes: CutPlane[];
   rotated90Z: boolean;
   totalConnectorsCount: number;
-  filamentPinsCount: number;        // 1.75 mm ham filament pimi yuvası açılan ince kesit sayısı
-  skippedThinFacesCount: number;    // < 6 mm olduğu için duvarı delmemek adına pim atlanan yüzey sayısı
+  filamentPinsCount: number;        // Thin-section faces fitted with 1.75 mm raw filament pin sockets
+  skippedThinFacesCount: number;    // Faces (< 6 mm) where pins were skipped to protect walls
   connectorPinMesh?: {
     fileName: string;
     positions: Float32Array;

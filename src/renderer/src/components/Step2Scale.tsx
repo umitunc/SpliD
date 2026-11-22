@@ -33,9 +33,9 @@ export function Step2Scale() {
     <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="uxigl-text-primary text-base font-semibold">2. Hedef Boyutu Ayarla</h2>
+          <h2 className="uxigl-text-primary text-base font-semibold">2. Set Target Size</h2>
           <p className="uxigl-text-muted mt-0.5 text-xs">
-            Modelin basılacağı gerçek milimetre (mm) boyutunu belirle.
+            Set the physical print dimensions in millimeters (mm).
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function Step2Scale() {
           }`}
         >
           {lockAspectRatio ? <Lock className="h-3 w-3" /> : <Unlock className="h-3 w-3" />}
-          <span>{lockAspectRatio ? 'Oran Kilitli' : 'Serbest'}</span>
+          <span>{lockAspectRatio ? 'Ratio Locked' : 'Unlocked'}</span>
         </button>
       </div>
 
@@ -56,7 +56,7 @@ export function Step2Scale() {
           {(['x', 'y', 'z'] as const).map((axis) => (
             <label key={axis} className="block">
               <span className="uxigl-text-muted mb-1 block text-[11px] font-semibold uppercase">
-                Hedef {axis} (mm)
+                Target {axis} (mm)
               </span>
               <input
                 type="number"
@@ -75,7 +75,7 @@ export function Step2Scale() {
 
         <div className="flex items-center gap-2 pt-1">
           <label className="uxigl-input flex flex-1 items-center justify-between px-3 py-2">
-            <span className="uxigl-text-muted text-xs">Ölçek %</span>
+            <span className="uxigl-text-muted text-xs">Scale %</span>
             <input
               type="number"
               min={1}
@@ -93,10 +93,10 @@ export function Step2Scale() {
             type="button"
             onClick={resetScaleToOriginal}
             className="uxigl-btn-outlined flex items-center gap-1 rounded-xl px-3 py-2 text-xs font-medium"
-            title="Orijinal boyuta sıfırla"
+            title="Reset to original size"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            <span>Sıfırla</span>
+            <span>Reset</span>
           </button>
         </div>
 
@@ -129,7 +129,7 @@ export function Step2Scale() {
 
       <div className="uxigl-card p-3.5">
         <p className="uxigl-text-muted mb-2 text-[11px] font-semibold uppercase tracking-wider">
-          Hızlı Birim Kurtarma & Ölçekleme
+          Quick Unit Conversion &amp; Scaling
         </p>
         <div className="grid grid-cols-3 gap-2">
           <button
@@ -151,7 +151,7 @@ export function Step2Scale() {
             onClick={() => applyScaleMultiplier(2)}
             className="uxigl-btn-outlined rounded-xl px-2.5 py-2 text-xs font-medium"
           >
-            2× Büyüt
+            Scale 2×
           </button>
         </div>
       </div>
@@ -159,9 +159,9 @@ export function Step2Scale() {
       {rawMesh && (
         <div className="uxigl-card space-y-2 p-3 text-xs">
           <div className="uxigl-text-secondary flex items-center justify-between">
-            <span>Tahmini Filament Tüketimi</span>
+            <span>Estimated Filament Usage</span>
             <span className="font-mono text-sm font-bold text-emerald-500">
-              ~{estimatedGrams.toFixed(1)} gr
+              ~{estimatedGrams.toFixed(1)} g
             </span>
           </div>
 
@@ -178,24 +178,24 @@ export function Step2Scale() {
             </select>
 
             <label className="uxigl-input flex flex-1 items-center justify-between px-2 py-1 text-[11px]">
-              <span className="uxigl-text-muted">Dolgu (Infill)</span>
+              <span className="uxigl-text-muted">Infill</span>
               <select
                 value={infillPercent}
                 onChange={(e) => setInfillPercent(Number(e.target.value))}
                 className="uxigl-accent-text bg-transparent font-mono font-semibold outline-none"
               >
-                <option value={10}>%10</option>
-                <option value={15}>%15</option>
-                <option value={20}>%20</option>
-                <option value={40}>%40</option>
-                <option value={100}>%100</option>
+                <option value={10}>10%</option>
+                <option value={15}>15%</option>
+                <option value={20}>20%</option>
+                <option value={40}>40%</option>
+                <option value={100}>100%</option>
               </select>
             </label>
           </div>
 
           <div className="uxigl-text-muted flex items-center justify-between text-[11px]">
             <span>
-              Orijinal: {rawMesh.originalSize.x.toFixed(1)}×{rawMesh.originalSize.y.toFixed(1)}×
+              Original: {rawMesh.originalSize.x.toFixed(1)}×{rawMesh.originalSize.y.toFixed(1)}×
               {rawMesh.originalSize.z.toFixed(1)} mm
             </span>
             <span className="font-mono">{modelVolumeCM3.toFixed(1)} cm³</span>

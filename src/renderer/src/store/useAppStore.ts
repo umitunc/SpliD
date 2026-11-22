@@ -320,7 +320,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       return {
         id: CUSTOM_PRINTER_ID,
         brand: 'Custom',
-        model: 'Özel Tabla Boyutu',
+        model: 'Custom Build Volume',
         technology: 'FDM',
         buildVolume: customBuildVolume
       };
@@ -363,7 +363,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       isSplitting: true,
       splitResult: null,
       splitError: null,
-      splitProgress: { percent: 2, message: 'İşlem başlatılıyor...' }
+      splitProgress: { percent: 2, message: 'Starting split...' }
     });
 
     const worker = new Worker(
@@ -383,7 +383,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         set({
           splitResult: msg.result,
           isSplitting: false,
-          splitProgress: { percent: 100, message: 'Tamamlandı' },
+          splitProgress: { percent: 100, message: 'Done' },
           selectedPartId: null
         });
         worker.terminate();
@@ -401,7 +401,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     worker.onerror = (err) => {
       set({
         isSplitting: false,
-        splitError: err.message || 'Worker beklenmeyen bir hatayla karşılaştı.'
+        splitError: err.message || 'Worker encountered an unexpected error.'
       });
       worker.terminate();
       if (activeWorker === worker) activeWorker = null;

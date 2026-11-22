@@ -683,7 +683,7 @@ export async function executeAdaptiveManifoldSplit(
   onProgress?: SplitProgressCallback
 ): Promise<SplitExecutionResult> {
   const startTime = performance.now();
-  onProgress?.(5, 'Manifold WASM motoru başlatılıyor...');
+  onProgress?.(5, 'Initializing Manifold WASM engine...');
   const wasm = await initManifold();
 
   const initialBBox = computeBoundingBox(positionsInput);
@@ -697,7 +697,7 @@ export async function executeAdaptiveManifoldSplit(
   const positions = orientation.rotated90Z ? rotatePositions90Z(positionsInput) : positionsInput;
   const originalVolumeCM3 = computeMeshVolumeCM3(positions, indices);
 
-  onProgress?.(15, '3D geometri su geçirmez (manifold) hale getiriliyor...');
+  onProgress?.(15, 'Converting 3D geometry to watertight manifold...');
   const rawMesh = new wasm.Mesh({
     numProp: 3,
     vertProperties: positions,
@@ -707,7 +707,7 @@ export async function executeAdaptiveManifoldSplit(
 
   const rootManifold = new wasm.Manifold(rawMesh);
   if (rootManifold.isEmpty()) {
-    throw new Error('Model Manifold olarak işlenemedi. Lütfen geçerli bir kapalı 3D mesh yükleyin.');
+    throw new Error('Failed to process model as Manifold. Please load a valid closed 3D mesh.');
   }
 
   const pinStats: PinApplicationStats = {
@@ -744,7 +744,7 @@ export async function executeAdaptiveManifoldSplit(
     const progressPct = Math.round(25 + ((cIdx + 1) / candidateSpecs.length) * 55);
     onProgress?.(
       progressPct,
-      `Optimum kesim stratejisi aranıyor (${cIdx + 1}/${candidateSpecs.length}: ${spec.axisOrder.join('→').toUpperCase()} / ${spec.cutStyle})...`
+      `Searching optimal cut strategy (${cIdx + 1}/${candidateSpecs.length}: ${spec.axisOrder.join('→').toUpperCase()} / ${spec.cutStyle})...`
     );
 
     const evaluated = runCandidateSplitPipeline(
@@ -778,7 +778,7 @@ export async function executeAdaptiveManifoldSplit(
 
   // Apply 3-tier adaptive alignment pins across active cut planes between final parts
   if (options.connectors.enabled && options.connectors.mode !== 'none' && finalManifolds.length > 1) {
-    onProgress?.(88, 'Adaptif hizalama pimleri açılıyor...');
+    onProgress?.(88, 'Creating adaptive alignment pins...');
     const eps = 0.6;
     for (const cut of allCutPlanes) {
       const axisIdx = cut.axis === 'x' ? 0 : cut.axis === 'y' ? 1 : 2;
@@ -814,7 +814,7 @@ export async function executeAdaptiveManifoldSplit(
     }
   }
 
-  onProgress?.(92, 'Parçalar paketleniyor...');
+  onProgress?.(92, 'Packaging split parts...');
   const parts: SplitPartResult[] = [];
   let totalPartsVolumeCM3 = 0;
 
@@ -860,7 +860,7 @@ export async function executeAdaptiveManifoldSplit(
     );
   }
 
-  onProgress?.(100, 'Bölme işlemi tamamlandı!');
+  onProgress?.(100, 'Split complete!');
   const executionTimeMs = Math.round(performance.now() - startTime);
 
   return {

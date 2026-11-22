@@ -1,0 +1,79 @@
+[
+  { "id": "bambu-a1-mini", "brand": "Bambu Lab", "model": "A1 Mini", "technology": "FDM", "buildVolume": { "x": 180, "y": 180, "z": 180 }, "popular": true },
+  { "id": "bambu-a1", "brand": "Bambu Lab", "model": "A1", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 }, "popular": true },
+  { "id": "bambu-p1p", "brand": "Bambu Lab", "model": "P1P", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 }, "popular": true },
+  { "id": "bambu-p1s", "brand": "Bambu Lab", "model": "P1S", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 }, "popular": true },
+  { "id": "bambu-x1c", "brand": "Bambu Lab", "model": "X1 Carbon (X1C)", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 }, "popular": true },
+  { "id": "bambu-x1e", "brand": "Bambu Lab", "model": "X1E", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 } },
+  { "id": "bambu-h2d", "brand": "Bambu Lab", "model": "H2D", "technology": "FDM", "buildVolume": { "x": 350, "y": 320, "z": 325 }, "popular": true },
+
+  { "id": "creality-ender3", "brand": "Creality", "model": "Ender-3 / Pro / V2", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 }, "popular": true },
+  { "id": "creality-ender3-v3-se", "brand": "Creality", "model": "Ender-3 V3 SE / KE", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 }, "popular": true },
+  { "id": "creality-ender3-v3", "brand": "Creality", "model": "Ender-3 V3", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 } },
+  { "id": "creality-ender3-v3-plus", "brand": "Creality", "model": "Ender-3 V3 Plus", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 330 }, "popular": true },
+  { "id": "creality-ender5-s1", "brand": "Creality", "model": "Ender-5 S1", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 280 } },
+  { "id": "creality-ender5-plus", "brand": "Creality", "model": "Ender-5 Plus", "technology": "FDM", "buildVolume": { "x": 350, "y": 350, "z": 400 } },
+  { "id": "creality-cr10", "brand": "Creality", "model": "CR-10 / CR-10 V2 / V3", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 400 } },
+  { "id": "creality-cr10-se", "brand": "Creality", "model": "CR-10 SE", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 265 } },
+  { "id": "creality-cr10-max", "brand": "Creality", "model": "CR-10 Max", "technology": "FDM", "buildVolume": { "x": 450, "y": 450, "z": 470 } },
+  { "id": "creality-k1", "brand": "Creality", "model": "K1 / K1C / K1 SE", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 }, "popular": true },
+  { "id": "creality-k1-max", "brand": "Creality", "model": "K1 Max", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 300 }, "popular": true },
+  { "id": "creality-k2-plus", "brand": "Creality", "model": "K2 Plus", "technology": "FDM", "buildVolume": { "x": 350, "y": 350, "z": 350 }, "popular": true },
+  { "id": "creality-halot-mage", "brand": "Creality", "model": "Halot-Mage / Pro (SLA)", "technology": "SLA", "buildVolume": { "x": 228, "y": 128, "z": 230 } },
+
+  { "id": "prusa-mini-plus", "brand": "Prusa Research", "model": "Original Prusa MINI+", "technology": "FDM", "buildVolume": { "x": 180, "y": 180, "z": 180 }, "popular": true },
+  { "id": "prusa-mk3s-plus", "brand": "Prusa Research", "model": "Original Prusa MK3S+", "technology": "FDM", "buildVolume": { "x": 250, "y": 210, "z": 210 } },
+  { "id": "prusa-mk4", "brand": "Prusa Research", "model": "Original Prusa MK4 / MK4S", "technology": "FDM", "buildVolume": { "x": 250, "y": 210, "z": 220 }, "popular": true },
+  { "id": "prusa-core-one", "brand": "Prusa Research", "model": "Prusa CORE One", "technology": "FDM", "buildVolume": { "x": 250, "y": 220, "z": 270 }, "popular": true },
+  { "id": "prusa-xl", "brand": "Prusa Research", "model": "Original Prusa XL", "technology": "FDM", "buildVolume": { "x": 360, "y": 360, "z": 360 }, "popular": true },
+  { "id": "prusa-sl1s", "brand": "Prusa Research", "model": "SL1S SPEED (SLA)", "technology": "SLA", "buildVolume": { "x": 127, "y": 80, "z": 150 } },
+
+  { "id": "anycubic-kobra-2", "brand": "Anycubic", "model": "Kobra 2 / Kobra 2 Pro", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 } },
+  { "id": "anycubic-kobra-2-plus", "brand": "Anycubic", "model": "Kobra 2 Plus", "technology": "FDM", "buildVolume": { "x": 320, "y": 320, "z": 400 } },
+  { "id": "anycubic-kobra-2-max", "brand": "Anycubic", "model": "Kobra 2 Max", "technology": "FDM", "buildVolume": { "x": 420, "y": 420, "z": 500 }, "popular": true },
+  { "id": "anycubic-kobra-3", "brand": "Anycubic", "model": "Kobra 3", "technology": "FDM", "buildVolume": { "x": 250, "y": 250, "z": 260 } },
+  { "id": "anycubic-kobra-s1", "brand": "Anycubic", "model": "Kobra S1", "technology": "FDM", "buildVolume": { "x": 250, "y": 250, "z": 250 } },
+  { "id": "anycubic-photon-m5s", "brand": "Anycubic", "model": "Photon Mono M5s (SLA)", "technology": "SLA", "buildVolume": { "x": 218, "y": 123, "z": 200 } },
+  { "id": "anycubic-photon-m7-pro", "brand": "Anycubic", "model": "Photon Mono M7 Pro (SLA)", "technology": "SLA", "buildVolume": { "x": 223, "y": 126, "z": 230 } },
+
+  { "id": "elegoo-neptune-4", "brand": "Elegoo", "model": "Neptune 3 Pro / 4 / 4 Pro", "technology": "FDM", "buildVolume": { "x": 225, "y": 225, "z": 265 }, "popular": true },
+  { "id": "elegoo-neptune-4-plus", "brand": "Elegoo", "model": "Neptune 3 Plus / 4 Plus", "technology": "FDM", "buildVolume": { "x": 320, "y": 320, "z": 385 } },
+  { "id": "elegoo-neptune-4-max", "brand": "Elegoo", "model": "Neptune 3 Max / 4 Max", "technology": "FDM", "buildVolume": { "x": 420, "y": 420, "z": 480 }, "popular": true },
+  { "id": "elegoo-centauri-carbon", "brand": "Elegoo", "model": "Centauri Carbon", "technology": "FDM", "buildVolume": { "x": 256, "y": 256, "z": 256 }, "popular": true },
+  { "id": "elegoo-mars-4", "brand": "Elegoo", "model": "Mars 4 / Mars 5 Ultra (SLA)", "technology": "SLA", "buildVolume": { "x": 153, "y": 77, "z": 165 } },
+  { "id": "elegoo-saturn-4-ultra", "brand": "Elegoo", "model": "Saturn 3 / Saturn 4 Ultra (SLA)", "technology": "SLA", "buildVolume": { "x": 218, "y": 122, "z": 220 }, "popular": true },
+  { "id": "elegoo-jupiter-se", "brand": "Elegoo", "model": "Jupiter SE (SLA)", "technology": "SLA", "buildVolume": { "x": 277, "y": 156, "z": 300 } },
+
+  { "id": "voron-02", "brand": "Voron Design", "model": "Voron 0.2 (V0)", "technology": "FDM", "buildVolume": { "x": 120, "y": 120, "z": 120 } },
+  { "id": "voron-24-250", "brand": "Voron Design", "model": "Voron Trident / 2.4 (250mm)", "technology": "FDM", "buildVolume": { "x": 250, "y": 250, "z": 250 } },
+  { "id": "voron-24-300", "brand": "Voron Design", "model": "Voron Trident / 2.4 (300mm)", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 300 } },
+  { "id": "voron-24-350", "brand": "Voron Design", "model": "Voron Trident / 2.4 (350mm)", "technology": "FDM", "buildVolume": { "x": 350, "y": 350, "z": 350 }, "popular": true },
+
+  { "id": "qidi-q1-pro", "brand": "Qidi Tech", "model": "Q1 Pro", "technology": "FDM", "buildVolume": { "x": 245, "y": 245, "z": 240 } },
+  { "id": "qidi-xmax-3", "brand": "Qidi Tech", "model": "X-Max 3", "technology": "FDM", "buildVolume": { "x": 325, "y": 325, "z": 315 } },
+  { "id": "qidi-plus-4", "brand": "Qidi Tech", "model": "Plus 4", "technology": "FDM", "buildVolume": { "x": 305, "y": 305, "z": 280 }, "popular": true },
+
+  { "id": "flashforge-ad5m", "brand": "FlashForge", "model": "Adventurer 5M / 5M Pro", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 220 }, "popular": true },
+  { "id": "flashforge-guider-3-ultra", "brand": "FlashForge", "model": "Guider 3 Ultra", "technology": "FDM", "buildVolume": { "x": 330, "y": 330, "z": 600 } },
+
+  { "id": "sovol-sv06", "brand": "Sovol", "model": "SV06", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 } },
+  { "id": "sovol-sv06-plus", "brand": "Sovol", "model": "SV06 Plus", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 340 } },
+  { "id": "sovol-sv07", "brand": "Sovol", "model": "SV07", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 } },
+  { "id": "sovol-sv07-plus", "brand": "Sovol", "model": "SV07 Plus", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 350 } },
+  { "id": "sovol-sv08", "brand": "Sovol", "model": "SV08", "technology": "FDM", "buildVolume": { "x": 350, "y": 350, "z": 345 }, "popular": true },
+
+  { "id": "ultimaker-s3", "brand": "UltiMaker", "model": "S3", "technology": "FDM", "buildVolume": { "x": 230, "y": 190, "z": 200 } },
+  { "id": "ultimaker-s5", "brand": "UltiMaker", "model": "S5", "technology": "FDM", "buildVolume": { "x": 330, "y": 240, "z": 300 } },
+  { "id": "ultimaker-s7", "brand": "UltiMaker", "model": "S7", "technology": "FDM", "buildVolume": { "x": 330, "y": 240, "z": 300 } },
+
+  { "id": "artillery-sidewinder-x2", "brand": "Artillery", "model": "Sidewinder X2 / X3 Plus / X4 Plus", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 400 } },
+  { "id": "artillery-genius-pro", "brand": "Artillery", "model": "Genius Pro", "technology": "FDM", "buildVolume": { "x": 220, "y": 220, "z": 250 } },
+
+  { "id": "ratrig-vcore4-300", "brand": "RatRig", "model": "V-Core 4 (300mm)", "technology": "FDM", "buildVolume": { "x": 300, "y": 300, "z": 300 } },
+  { "id": "ratrig-vcore4-400", "brand": "RatRig", "model": "V-Core 4 (400mm)", "technology": "FDM", "buildVolume": { "x": 400, "y": 400, "z": 400 } },
+  { "id": "ratrig-vcore4-500", "brand": "RatRig", "model": "V-Core 4 (500mm)", "technology": "FDM", "buildVolume": { "x": 500, "y": 500, "z": 500 } },
+
+  { "id": "phrozen-sonic-mighty-8k", "brand": "Phrozen", "model": "Sonic Mighty 8K (SLA)", "technology": "SLA", "buildVolume": { "x": 218, "y": 123, "z": 235 } },
+  { "id": "phrozen-sonic-mega-8k-s", "brand": "Phrozen", "model": "Sonic Mega 8K S (SLA)", "technology": "SLA", "buildVolume": { "x": 330, "y": 185, "z": 300 } },
+  { "id": "phrozen-sonic-mini-8k-s", "brand": "Phrozen", "model": "Sonic Mini 8K S (SLA)", "technology": "SLA", "buildVolume": { "x": 165, "y": 72, "z": 170 } }
+]

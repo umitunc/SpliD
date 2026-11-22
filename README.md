@@ -1,7 +1,7 @@
 # SpliD — Automatic Cross-Platform 3D Model Splitter
 
 <p align="center">
-  <img src="docs/logo/splid-cube-logo.png" width="140" alt="SpliD Logo" />
+  <img src="docs/logo/splid-logo.png" width="140" alt="SpliD Logo" />
 </p>
 
 **SpliD**, karmaşık manuel kesim araçları yerine **4 adımlı, sıfır sürtünmeli (zero-friction)** bir masaüstü iş akışı sunan cross-platform (Windows, macOS, Linux) Electron 3D model bölme uygulamasıdır.
